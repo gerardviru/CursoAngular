@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { DestinoViaje } from '../Models/destino-viaje.model';
 
 @Component({
@@ -9,12 +9,20 @@ import { DestinoViaje } from '../Models/destino-viaje.model';
 export class DestinoViajeComponent implements OnInit {
 
   @Input() destino: DestinoViaje | undefined;
-  @Input() nombre: string ="";
+  @Input('idx') position: number | undefined;
   @HostBinding('attr.class') cssClass = 'col-md-4';
+  @Output() clicked : EventEmitter<DestinoViaje>;
 
-  constructor() { }
+  constructor( ) { 
+    this.clicked = new EventEmitter();
+  }
 
   ngOnInit() {
+  }
+
+  leer(){
+    this.clicked.emit(this.destino);
+    return false;
   }
 
 }

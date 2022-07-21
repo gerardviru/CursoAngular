@@ -8,19 +8,19 @@ import { DestinoViaje } from '../Models/destino-viaje.model';
 })
 export class DestinoViajeComponent implements OnInit {
 
-  @Input() destino: DestinoViaje | undefined;
-  @Input('idx') position: number | undefined;
-  @HostBinding('attr.class') cssClass = 'col-md-4';
-  @Output() clicked : EventEmitter<DestinoViaje>;
-
-  constructor( ) { 
-    this.clicked = new EventEmitter();
+  @Input() destino : DestinoViaje;
+  @Input('idx') position : number ;
+  @HostBinding ('attr.class') cssClass='col-md-4';
+  @Output() clicked:EventEmitter<DestinoViaje>;
+  constructor() {
+    this.destino=Input();
+    this.position=Input();
+    this.clicked= new EventEmitter();
+  }
+  ngOnInit(): void {
   }
 
-  ngOnInit() {
-  }
-
-  leer(){
+  ir() {
     this.clicked.emit(this.destino);
     return false;
   }
